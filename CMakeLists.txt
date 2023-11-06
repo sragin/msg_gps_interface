@@ -21,6 +21,7 @@ set(msg_files
   "msg/GPSMsg.msg"
   "msg/GPSMsgAtt.msg"
   "msg/GPSRawMsg.msg"
+  "msg/GPSMsgGeoid.msg"
 )
 
 # set(srv_files
