@@ -1,7 +1,7 @@
 # Messages
 std_msgs/Header header
 builtin_interfaces/Time stamp
-string[] gpstime
+string gpstime
 
 float64 lat
 float64 lon
