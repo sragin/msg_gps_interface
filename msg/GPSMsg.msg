@@ -9,8 +9,11 @@ float64 lon         # deg (WGS84)
 # 높이 3종 (모두 m). 발행자는 아래 관계를 지켜야 한다.
 #   타원체고(WGS84)         = alt + geo
 #   국내 정표고(KNGeoid18)   = alt + geo - geo_model
-float64 alt         # 해수면 높이(정표고). 수신기 내장 지오이드 모델 기준 = GGA 고도
-float64 geo         # 지오이드고(타원체 - 해수면). 수신기 값 = GGA geo_sep. 수신기 값이 없으면 geo_model 로 대신
+# 발행자별 alt 기준:
+#   koceti_gnss       : 국내(KNGeoid18 범위)는 KNGeoid18 정표고 → geo == geo_model. 범위 밖은 수신기 지오이드
+#   gps_rclpy_pkg(구) : 수신기 정표고(GGA 고도, 보통 EGM96). 국내 정표고와 수 m 차이 (군산 시험장 약 3.9 m)
+float64 alt         # 정표고. 기준은 위 "발행자별 alt 기준"
+float64 geo         # alt 계산에 쓴 지오이드고(타원체 - 지오이드). 타원체고 = alt + geo
 float64 geo_model   # KNGeoid18 지오이드고(국토지리정보원). 모델 범위 밖이면 -9999.9
 float64 h_dil       # Horizontal Dilusion (HDOP). 없으면 0
 float64 tm_x        # TM 좌표 북(N), m. EPSG:5186 중부원점
